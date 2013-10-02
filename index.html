@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript とのつきあい方</title>
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+    <!--[if lt IE 9]>
+      <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+
+        <section id="top" data-markdown>
+          ## JavaScript とのつきあい方
+          ### ここがダメだよJavaScript
+          Created by Shogo Kawase
+        </section>
+
+
+        <section data-markdown>
+          ## 自己紹介
+          - 河瀨翔吾（SHOGO）
+          - 株式会社アークスタイル CTO
+          - twitter: [@shogogg](http://twitter.com/shogogg)
+          - PHP, Java, **Scala**, JavaScript, **TypeScript**
+            - Android
+            - AngularJS
+            - Play Framework
+        </section>
+
+
+        <section data-markdown>
+          ## 本日の内容
+          - JavaScript の抱える問題点
+          - その解決方法があったりなかったり
+        </section>
+
+
+        <section>
+          <section data-transition="fade" data-markdown>
+            ## 問題点-1
+            ### 名前
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## JavaScript の名前の由来
+            - 元々は **Mocha** という名前で開発されていた
+              - ライバルが Java アプレットだったのでそれを意識していた模様
+            - 1995年9月, Netscape Navigator 2.0 のベータ版に搭載されるときに **LiveScript** に改名
+            - 同年12月, Netscape 社は Java の開発元である Sun Microsystems 社と業務提携し, LiveScript を **JavaScript** に改名することを発表
+              - ライバルだったはずの Java の人気にあやかろうとした模様
+          </section>
+          <section data-transition="fade">
+            <h2>その結果...</h2>
+            <div class="em2 fragment" data-markdown>
+              - Q. ホームページでJAVAが動きません＞＜
+              - A. Java と JavaScript は別物です...
+            </div>
+          </section>
+          <section data-transition="fade">
+            <h2>解決方法</h2>
+            <p class="em1 fragment">あきらめましょう</p>
+          </section>
+        </section>
+
+
+        <section>
+          <section data-transition="fade" data-markdown>
+            ## 問題点-2
+            ### 処理系の互換性
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## JavaScript 処理系の互換性
+            - サーバーサイド
+              - node.js 一強状態なのでスルー
+            - クライアントサイド
+              - ブラウザごとにAPIはおろか文法エラーすら異なる状態
+              - レンダリングの差も考えると絶望できるよね！
+              - 最近はまだマシになってきた方
+          </section>
+          <section data-transition="fade">
+            <h2>JavaScript エンジニアの殺し方</h2>
+            <p class="em1 fragment">「IE6対応よろしく」</p>
+          </section>
+          <section data-transition="fade">
+            <h2>解決方法</h2>
+            <p class="em1 fragment">フレームワークを使う</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## フレームワークを使おう！
+            - 主要フレームワークは基本的にクロスブラウザで動作する
+              - 直接APIを叩かずにフレームワーク経由で利用することで処理系ごとの差を意識せずにコードが書ける
+            - ブラウザ向けに JavaScript を書くなら **[jQuery](http://jquery.com/)** はすでに必修
+              - jQuery 2.x系は**IE8未満を切り捨てた**ので要注意
+            - ここ最近 **[D3.js](http://d3js.org/)** も台頭してきている
+            - **[Underscore.js](http://underscorejs.org/)** も覚えておくといいかも
+            - **[Backbone.js](http://backbonejs.org/)** などのMVCフレームワークも充実してきた
+              - 個人的イチオシは **[AngularJS](http://angularjs.org/)**
+          </section>
+        </section>
+
+
+        <section>
+          <section data-transition="fade" data-markdown>
+            ## 問題点-3
+            ### クラスが使えない
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## 独特のオブジェクト指向
+            - JavaScript はクラスベースではなく**プロトタイプベース**の言語
+              - JavaScript 以外には Lua とか Self とか
+              - JavaScript は Self の影響を受けている
+            - プロトタイプベースであることには利点もあるけど……
+              - クラスがあった方がシンプルに書けるケースは多い
+              - マイナーなので学習コストが高い
+            - 結局みんながオレオレクラスもどきライブラリを作ってしまう
+              - prototype.js とか JS.Class とか
+          </section>
+          <section data-transition="fade">
+            <h2>解決方法</h2>
+            <p class="em1 fragment">ECMAScript6</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## ECMAScript6
+            - ECMAScript = JavaScript のベースとなる仕様
+              - 主要モダンブラウザは ECMAScript5 準拠
+              - IEもIE9で ECMAScript5 にほぼ準拠、IE10で完全準拠
+              - 各ブラウザの ECMAScript5 準拠状況 → http://goo.gl/ObnxoG
+            - ECMAScript6 では様々な構文・機能が追加予定
+              - ECMAScript6 ならクラスも書けるよ！
+              - ただし準拠状況はまだまだ → http://goo.gl/NJiiTl
+          </section>
+          <section data-transition="none">
+            <p class="em1">待てない</p>
+          </section>
+          <section data-transition="fade">
+            <h2>真・解決方法</h2>
+            <p class="em1 fragment">TypeScript</p>
+            <p class="em2 fragment">または CoffeeScript</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## TypeScript
+            - Microsoft が開発したスクリプト言語
+            - コンパイルすると JavaScript が生成される
+            - JavaScript のスーパーセット
+              - 学習コストが低い
+              - 既存の JavaScript 資産の移行や共用もかんたん
+            - モジュールやクラスなど ECMAScript6 の仕様を一部先行導入
+            - **静的型付け**が可能
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## コード例
+            ```actionscript
+            class ClassName extends SuperClass implements IInterface, IInterface2 {
+              // メンバ変数
+              varName: string = 'Hello World!';
+
+              // コンストラクタ
+              constructor(arg1: string, args2: number) {
+                ...
+              }
+
+              // メンバ関数
+              sum(arg1: number, arg2): number {
+                return arg1 + arg2;
+              }
+
+              // アクセス修正子（public or private）もあるよ！
+              private privateMethod(arg1: string, arg2: string): string {
+                ...
+              }
+
+              // 他にも色々あるけど省略
+            }
+            ```
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## CoffeeScript
+            - Ruby や Python, Haskellに影響を受けた文法を持つスクリプト言語
+            - コンパイルすると JavaScript が生成される
+            - 様々な糖衣構文によりコード量を大幅に削減できる
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## コード例
+            ```coffeescript
+            class ClassName extends SuperClass
+
+              # メンバ変数
+              varName: 'Hello World!'
+
+              # コンストラクタ
+              constructor: (arg1, arg2) ->
+                ...
+
+              # メンバ関数
+              sum: (arg1, arg2) -> arg1 + arg2
+            ```
+          </section>
+        </section>
+
+
+        <section>
+          <section data-transition="fade" data-markdown>
+            ## 問題点-4
+            ### 巻き上げにハマる
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## コード例
+            ```javascript
+            var name = "GLOBAL";
+
+            function foo() {
+
+              console.log(name); // GLOBAL ……と思いきや undefined
+
+              var name = "LOCAL";
+
+              console.log(name); // LOCAL
+
+            }
+
+            foo();
+            ```
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## コード例
+            ```javascript
+            var name = "GLOBAL";
+
+            function foo() {
+
+              var name;
+
+              console.log(name); // 初期化されてないので undefined
+
+              name = "LOCAL";
+
+              console.log(name); // LOCAL
+
+            }
+
+            foo();
+            ```
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## 巻き上げ
+            - 他の言語ではあまり見かけない JavaScript 独特の仕様
+            - 関数内のどこかでvar宣言すると先頭で宣言したものとみなされる
+              - 初期化はされないので値は `undefined` となる
+            - 関数内のどこかで関数を定義すると先頭で定義したものとみなされる
+              - 定義も行われるので、関数定義より前に呼び出してもエラーとはならない
+            - 問題は言い過ぎかもしれないがハマりやすい
+          </section>
+          <section data-transition="fade">
+            <h2>解決方法</h2>
+            <p class="em1 fragment">単独varパターン</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## 単独varパターン
+            - var宣言と初期化を関数の先頭ですべて行う
+            - 実際の挙動とコードを併せることで無用な混乱を避けることができる
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## コード例
+            ```
+            function sum(n) {
+              // ローカル変数は先頭ですべて宣言し初期化する
+              var total = 0,
+                  i = 0;
+
+              for (i = n; i &gt; 0; --i) {
+                total += i;
+              }
+
+              return total;
+            }
+
+            console.log(sum(10));
+            ```
+          </section>
+        </section>
+
+
+        <section>
+          <section data-transition="fade" data-markdown>
+            ## 問題点-5
+            ### スコープがショボすぎる
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## JavaScript のスコープ
+            - JavaScript のスコープは2種類
+              - グローバルと関数ローカル
+            - ブロックスコープ？なにそれおいしい？
+            - 関数でvar宣言を忘れるとグローバル変数を使ってしまう
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## コード例
+            ```javascript
+            var x = 100; // グローバル変数
+
+            // 1..n の総和を求める
+            function sum(n) {
+
+              var total = 0;
+
+              // var x しないまま x を使って for ループ
+              for (x = n; x &gt; 0; --x) {
+                total += x;
+              }
+
+              return total;
+
+            }
+
+            console.log(x);       // 100 が表示される
+            console.log(sum(10)); // 55 が表示される
+            console.log(x);       // 100 ではなく 0 が表示される
+            ```
+          </section>
+          <section data-transition="fade">
+            <h2>解決方法</h2>
+            <div class="em2 fragment" data-markdown>
+              - グローバル変数は使わない
+              - 単独varパターン
+              - let宣言
+            </div>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## let宣言
+            - var宣言と異なり、宣言を行った**ブロック**がスコープとなる
+            - ECMAScript6, JavaScript 1.7 の仕様
+            - 各種ブラウザで実装が進んでいるが……
+              - Firefox では script 要素の type 属性にオプションの指定が必要
+              - Chrome では chrome://flags から JavaScript の試験運用機能を有効にする
+              - IE は IE11 からの対応
+              - node.js でも起動時にオプションを指定しないと有効にならない
+          </section>
+          <section data-transition="none">
+            <p class="em1">ぶっちゃけまだ使えない</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## 代替案
+            - for ループの代わりに `Array.prototype.map` などを使う
+              - IE8 未満に対応する場合は `jQuery.map` などで代用可能
+            - 無名関数の即時実行で擬似的なブロックスコープを実現可能
+              - どうしてもブロックスコープ的な事がしたい場合の最終手段
+              - 素直に if 文の中身を別関数にしちゃうのも手
+          </section>
+        </section>
+
+
+        <section>
+          <section data-transition="fade" data-markdown>
+            ## 問題点-6
+            ### this問題
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## this問題
+            - JavaScript の this はとにかくわかりづらい
+            - 記述した位置はおろか、関数の呼び出し方によっても変わる
+            - Strict Mode を使ってると同じコードでも変わったりする
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## コード例
+            ```javascript
+            var obj = {
+              
+              value: 'Hello World!!',
+              
+              hello: function() {
+
+                var log = function() {
+                  console.log(this.value);
+                };
+
+                console.log(this.value); // Hello World!!
+                log(); // undefined
+
+              }
+
+            };
+            ```
+          </section>
+          <section data-transition="fade">
+            <h2>解決方法</h2>
+            <p class="em1 fragment">this の使用を控える</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## this の使用を控える
+            - this を使わないで済む場面では this を使わないようにする
+            - コードを読むとき「ここの this ってなんだろう？」って考えなきゃいけないのを避ける
+            - 特に jQuery の各種APIにおける this の挙動は凶悪
+          </section>
+          <section data-transition="none">
+            <p class="em2">どうしても使いたいなら</p>
+          </section>
+          <section data-transition="fade">
+            <h2>解決方法</h2>
+            <p class="em1 fragment">覚える</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## JavaScript の this 覚え方
+            - 基本は `this = グローバルオブジェクト`
+              - ブラウザの場合は `window` がグローバルオブジェクト
+            - 関数がオブジェクトに属する場合は関数が属するオブジェクト
+              - グローバル関数の場合はグローバルオブジェクトに属する
+            - 関数をコンストラクタとして使用した場合は生成されるオブジェクト
+            - apply, call などを使って呼び出された場合は指定されたオブジェクト
+            - 実はこれだけじゃなくて本当はもっと複雑 → http://goo.gl/QONn4T
+          </section>
+          <section data-transition="none">
+            <p class="em2">覚えられないと思うので</p>
+          </section>
+          <section data-transition="fade">
+            <h2>宿題</h2>
+            <p class="em2">帰ったら「JavaScript this」でググれ</p>
+          </section>
+        </section>
+
+
+        <section>
+          <section data-transition="fade" data-markdown>
+            ## 問題点-7
+            ### コールバック地獄
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## コールバック地獄
+            - JavaScript で本格的にコーディングしているとコールバックの嵐に悩まされる事になる
+              - ブラウザでAjax通信したりアニメーションさせたり
+              - node.js では非同期APIが基本, かつコールバックを使うことがルール化されている
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## コード例
+            jQuery でコンテンツをAjaxで読み込んでアニメーションして...
+            ```javascript
+            $.get('hoge.txt', function(data) {
+
+              var div = $('&lt;div&gt;').text(data).appendTo('body');
+
+              div.fadeIn(200, function() {
+
+                setTimeout(function() {
+
+                  div.fadeOut(500, function() {
+                    alert('終わったよ！');
+                  });
+
+                }, 1000);
+
+              });
+
+            });
+            ```
+          </section>
+          <section data-transition="none">
+            <p class="em1">ネストしすぎ</p>
+          </section>
+          <section data-transition="fade">
+            <h2>解決方法</h2>
+            <p class="em1 fragment">Deferred/Promise</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## コード例
+            さっきのコードを Deferred/Promise スタイルで書き直す
+            ```javascript
+            $.get('hoge.txt').then(function(data) {
+
+              return $('&lt;div&gt;').text(data).appendTo('body').fadeIn(200).promise();
+
+            }).then(function(div) {
+
+              var deferred = $.Deferred();
+              setTimeout(function() { deferred.resolve(div); }, 1000);
+              return deferred.promise();
+
+            }).then(function() {
+
+              return div.fadeOut(500).promise();
+
+            }).then(function() {
+
+              alert('終わったよ！');
+
+            });
+            ```
+          </section>
+          <section data-transition="none">
+            <p class="em1">ネストが減ったよ！</p>
+            <p>※なんか複雑になったように見えるのは例が悪い気がします</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## Deferred/Promise って何？
+            - **jQuery** が Deferrd/Promise スタイルのAPIを提供 → 一躍有名に
+              - jQuery の Ajax系APIの戻り値はすべて Promise インターフェースを持つ
+              - `$.Deferred()` で Deferred オブジェクトを生成できる
+            - **node.js** では [Q](http://documentup.com/kriskowal/q/) が有名
+              - 実は node.js だけでなくブラウザ環境でも Q は使える
+            - **AngularJS** には前述の Q をベースにした $q というサービスが標準で含まれている
+          </section>
+          <section data-transition="none">
+            <p class="em2">Deferred わからないとお話にならない時代</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## Deferred を使った非同期関数
+            ```javascript
+            function asyncFunction() {
+
+              // Deferred オブジェクトを生成する
+              var deferred = new $.Deferred;
+
+              // 非同期処理
+              setTimeout(function() {
+                
+                var result = null;
+                
+                // Do something...
+
+                // 完了したら Deferred オブジェクトの resolve() を呼び出す
+                // 結果を引数に渡すことができる ※省略してもOK
+                deferred.resolve(result);
+
+              }, 5000);
+
+              // Promise オブジェクトを生成して返す
+              return deferred.promise();
+
+            }
+            ```
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## Deferred を使った非同期関数を利用する
+            ```javascript
+            // 非同期関数を呼び出す
+            var promise1 = asyncFunction();
+
+            // コールバックを登録する
+            var promise2 = promise.then(function(result) {
+              // Do something...
+            });
+
+            // promise.then の戻り値は新たな Promise オブジェクトなので
+            // 上記コールバックが完了したときのコールバックも登録できる
+            promise2.then(function() {
+              // Do something...
+            });
+
+
+            // つまりこう書ける
+            asyncFunction().then(function(result) {
+              // Do something...
+            }).then(function() {
+              // Do something...
+            });
+            ```
+          </section>
+          <section data-transition="fade">
+            <h2>Deferred/Promise の仕組み</h2>
+            <img src="images/chart.png" alt="Deferred/Promise フローチャート" width="960" height="354" class="chart">
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## Deferred/Promise すごいよ！
+            - Deferred/Promise はネストを減らすだけではなく、並列処理や後からの変更にも強い
+              - `$.when([...])` や `Q.all([...])` を使って並列処理
+              - 処理の順番が変わっても `.then(...)` を入れ替えるだけ
+              - 処理の内容が変わっても各関数が独立しているので変更しやすい
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## Deferred/Promise は銀の弾丸ではない...
+            - 処理の内容によってはネストが増えるケースもある
+            - 単純にコールバックを受け取る関数に比べてコードが煩雑になる
+            - そしてこうなる → http://goo.gl/QONn4T ※マニア向け
+          </section>
+        </section>
+
+
+        <section>
+          <section data-transition="fade" data-markdown>
+            ## 問題点-8
+            ### function地獄
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## Function地獄
+            - Deferred/Promise でコールバック地獄からは脱出できる（かも）
+            - でも function って文字数多くてタイピング辛いしコードも見難い
+            - もっともっとラクにコーディングがしたい！
+          </section>
+          <section data-transition="fade">
+            <h2>解決方法</h2>
+            <p class="em1 fragment">アロー記法</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## アロー記法を使うと...
+            ```javascript
+            var f = function(a, b, c) {
+              return a + b + c;
+            };
+
+            someFunction(1, 2, function(a) {
+              // Something to do...
+            });
+            ```
+            ↓
+            ```javascript
+            var f = (a, b, c) => a + b + c;
+
+            someFunction(1, 2, (a) => {
+              // Something to do ...
+            });
+            ```
+          </section>
+          <section data-transition="fade">
+            <h2>ただし</h2>
+            <p class="em1 fragment">ECMAScript6 の仕様です</em1>
+            <div class="fragment" data-markdown>
+              - Firefox のみ23以降で使用可能
+              - つまりまだ使えない……
+            </div>
+          </section>
+          <section data-transition="fade">
+            <h2>そこで</h2>
+            <div class="fragment" data-markdown>
+              - TypeScript または CoffeeScript ならアロー記法が使える！
+              - TypeScript なら静的型付けもあるし JS との互換性も高いよ！
+            </div>
+          </section>
+          <section data-transition="none">
+            <p class="em1">TypeScript 最高！</p>
+          </section>
+        </section>
+
+
+        <section>
+          <section data-transition="fade" data-markdown>
+            ## 問題点-9
+            ### 型システム
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## JavaScript はご存じの通り動的型付け
+            - まぁ、この辺は宗教論争になりがちですが……
+            - 動的型付けであっても, 小規模なアプリケーション/開発体制なら事足りる場合もあるかも
+            - 中〜大規模なアプリケーション/開発体制なら静的型付けのメリットは大きい
+          </section>
+          <section data-transition="fade">
+            <h2>静的型信者のための解決方法</h2>
+            <p class="em1 fragment">TypeScript 使おう</p>
+          </section>
+          <section data-transition="fade" data-markdown>
+            ## TypeScript なら……
+            - 既存 JavaScript ライブラリとの併用もできるよ！
+              - 既存ライブラリに型情報を提供する方法もあるよ！
+            - ジェネリクスもあるよ！
+            - 基本的な構文エラーとかはコンパイル時に検出できるよ！
+          </section>
+          <section data-transition="none">
+            <p class="em1">TypeScript 最高！</p>
+          </section>
+        </section>
+
+
+        <section>
+          <section data-transition="none">
+            <p class="em1">以上</p>
+          </section>
+          <section data-transition="none">
+            <p class="em2">ご静聴ありがとうございました</p>
+          </section>
+        </section>
+
+
+        <section>
+          <section data-transition="fade">
+            <h2>書籍紹介</h2>
+            <a href="http://www.amazon.co.jp/gp/product/4873114888/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873114888&amp;linkCode=as2&amp;tag=studioflynet-22"><img border="0" src="images/javascript_pattern.jpg" width="258" height="330"></a>
+            <a href="http://www.amazon.co.jp/gp/product/4873113911/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4873113911&amp;linkCode=as2&amp;tag=studioflynet-22"><img border="0" src="images/javascript_the_good_parts.jpg" width="258" height="330"></a>
+          </section>
+        </section>
+
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/fade
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ],
+        keyboard: {
+          13: 'next' // go to the next slide when the ENTER key is pressed
+        }
+      });
+    </script>
+
+  </body>
+</html>
